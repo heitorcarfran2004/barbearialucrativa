@@ -132,6 +132,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* ---------- palco ---------- */
 #palco{max-width:480px;margin:0 auto;padding:24px 16px 96px;overflow-x:hidden;overflow-x:clip}
 .tela{animation:entra .34s ease both}
+/* perguntas centralizadas na altura da tela (cabeçalho continua colado no topo) */
+.tela.tela-centro{min-height:calc(100vh - var(--topo-h,110px) - 120px);min-height:calc(100dvh - var(--topo-h,110px) - 120px);display:flex;flex-direction:column;justify-content:center}
 .tela.volta{animation:entraV .34s ease both}
 .tela.sai{animation:sai .18s ease both}
 @keyframes entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -625,6 +627,7 @@ function cabecalho(t){
   contador.innerHTML = 'Pergunta <b>' + num + '</b> de ' + TOTAL;
   btnVoltar.hidden = !(t.tipo === 'q' || t.tipo === 'fato' || t.tipo === 'slider');
   if (!quiz) diagEl.classList.remove('aberto');
+  document.documentElement.style.setProperty('--topo-h', topo.offsetHeight + 'px');
 }
 
 function vaiPara(novo, voltando){
@@ -632,7 +635,7 @@ function vaiPara(novo, voltando){
   var velho = palco.firstElementChild;
   var mostra = function(){
     idx = novo; telaAtual = t; inicioTela = Date.now();
-    palco.innerHTML = ''; var el = document.createElement('section'); el.className = 'tela' + (voltando ? ' volta' : '') + (t.tipo === 'fato' ? ' tela-fato' : '');
+    palco.innerHTML = ''; var el = document.createElement('section'); el.className = 'tela' + (voltando ? ' volta' : '') + (t.tipo === 'fato' ? ' tela-fato' : '') + ((t.tipo === 'q' || t.tipo === 'nome' || t.tipo === 'slider') ? ' tela-centro' : '');
     el.setAttribute('data-tela', t.id); palco.appendChild(el);
     cabecalho(t);
     RENDER[t.tipo](el, t);
