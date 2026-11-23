@@ -617,7 +617,7 @@ var MARCA_VL = ico(I.tesoura) + '<span>Visagismo Lucrativo</span>';   // só a p
 function cabecalho(t){
   var quiz = t.tipo === 'q' || t.tipo === 'nome' || t.tipo === 'fato' || t.tipo === 'slider';
   topo.classList.toggle('so-marca', !quiz); topo.classList.toggle('no-fato', t.tipo === 'fato');
-  var vl = t.tipo === 'analise' || t.tipo === 'resultado';
+  var vl = t.tipo === 'resultado';   // a VSL também fica com "Análise do Barbeiro" (pedido do Heitor)
   marca.classList.toggle('vl', vl); marca.innerHTML = vl ? MARCA_VL : MARCA_NEUTRA;
   var feitas = 0; for (var i = 0; i < idx; i++) if (TELAS[i].n) feitas++;
   progFill.style.width = (feitas / TOTAL * 100) + '%';

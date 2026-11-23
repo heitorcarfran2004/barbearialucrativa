@@ -6,3 +6,7 @@ assets/_folha.jpg
 quiz-roteiro.md
 vsl-roteiro.md
 README.md
+
+.vercel
+.env*
+.url-no-ar
