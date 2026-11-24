@@ -592,7 +592,7 @@ var TELAS = [
     reacao:function(v){ return v === 'desistir' ? 'Quase todo barbeiro que hoje vive bem da profissão já pensou nisso um dia. Segura mais um pouco.' : null; } },
   { id:'5anos', tipo:'q', n:19, titulo:function(){ return 'Se nada mudar, como você se vê daqui a 5 anos?'; },
     ops:[ {v:'mesmo', t:'Cortando o mesmo tanto, pelo mesmo preço'}, {v:'cansado', t:'Mais cansado e ganhando igual'}, {v:'fora', t:'Fora da barbearia'}, {v:'nempensar', t:'Prefiro nem pensar'} ] },
-  { id:'fato4', tipo:'fato', foto:'hero.webp', titulo:'Tem barbeiro de cidade pequena cobrando 3x mais com a mesma máquina que você.',
+  { id:'fato4', tipo:'fato', botao:'QUERO SABER O QUE É', foto:'hero.webp', titulo:'Tem barbeiro de cidade pequena cobrando 3x mais com a mesma máquina que você.',
     sub:'O que eles fazem de diferente quase nenhum curso ensina. Na sua análise você vai ver o que é.' },
   { id:'90dias', tipo:'q', n:20, titulo:function(){ return 'Se você pudesse escolher um resultado pros próximos 90 dias:'; },
     ops:[ {v:'dobro', t:'Cobrar o dobro sem perder meus clientes'}, {v:'agenda', t:'Ter agenda cheia sem trabalhar até meia-noite'},
@@ -854,7 +854,7 @@ var RENDER = {
     someReacao();
     el.innerHTML = '<div class="fato-fundo">' + foto(t.foto, '') + '<div class="ilustra">' + ILUSTRA + '</div></div>' +
       '<div class="fato"><span class="rot">FATO</span><h2>' + (typeof t.titulo === 'function' ? t.titulo() : t.titulo) + '</h2><p>' + (typeof t.sub === 'function' ? t.sub() : t.sub) + '</p>' +
-      '<button class="btn" id="okFato">CONCORDO, É VERDADE</button></div>';
+      '<button class="btn" id="okFato">' + (t.botao || 'CONCORDO, É VERDADE') + '</button></div>';
     $('#okFato', el).addEventListener('click', function(){ envia('resposta', t.id, idx, 'concordo'); vibra(12); proxima(); });
   },
 
